@@ -10,11 +10,15 @@ prebuilt_cxx_library(
     name = 'glfw',
     platform_static_lib = [
         ('^windows.*', 'glfw/windows/lib-vs2015/glfw3.lib'),
-        ('^macos.*', 'glfw/macos/lib/libglfw3.a')
+        ('^macos.*', 'glfw/macos/lib/libglfw3.a'),
+        # Comment out the below line to build
+        ('^linux.*', 'glfw/linux/lib/libglfw3.so')
     ],
     exported_platform_headers = [
         ('^windows.*', subdir_glob([('glfw/windows/include/GLFW', '**/*.h')])),
-        ('^macos.*', subdir_glob([('glfw/macos/include/GLFW', '**/*.h')]))
+        ('^macos.*', subdir_glob([('glfw/macos/include/GLFW', '**/*.h')])),
+        # Comment out the below line to build
+        ('^linux.*', subdir_glob([('glfw/linux/include/GLFW', '**/*.h')]))
     ],
     preferred_linkage = 'static',
     header_namespace = 'GLFW',
